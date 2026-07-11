@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Check https://github.com/XTLS/Xray-core/releases for the latest tag and
 # bump this if you want a newer Xray-core version.
-ARG XRAY_VERSION=v25.7.1
-
-RUN curl -fL -o /tmp/xray.zip \
-      "https://github.com/XTLS/Xray-core/releases/download/${XRAY_VERSION}/Xray-linux-64.zip" && \
+RUN curl -fsSL https://api.github.com/repos/XTLS/Xray-core/releases/latest \
+      | grep -o '"browser_download_url": *"[^"]*Xray-linux-64.zip"' \
+      | cut -d'"' -f4 \
+      | xargs curl -fL -o /tmp/xray.zip && \
     unzip -o /tmp/xray.zip -d /usr/local/bin && \
     chmod +x /usr/local/bin/xray && \
     rm /tmp/xray.zip
