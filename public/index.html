@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>پنل VLESS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◈</span>
+        <h1>پنل VLESS</h1>
+      </div>
+      <div class="status" id="xrayStatus">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">در حال بررسی…</span>
+      </div>
+      <button class="btn btn-primary" id="openCreate">+ کاربر جدید</button>
+    </header>
+
+    <main>
+      <section class="summary">
+        <div class="stat">
+          <span class="stat-value" id="statTotal">–</span>
+          <span class="stat-label">کل کاربران</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statActive">–</span>
+          <span class="stat-label">فعال</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statTraffic">–</span>
+          <span class="stat-label">مصرف کل</span>
+        </div>
+      </section>
+
+      <section class="user-list" id="userList">
+        <!-- user cards injected here -->
+      </section>
+    </main>
+  </div>
+
+  <!-- Create / Edit modal -->
+  <dialog id="userModal">
+    <form id="userForm" method="dialog">
+      <h2 id="modalTitle">کاربر جدید</h2>
+
+      <label>
+        نام / یادداشت
+        <input type="text" id="fRemark" required placeholder="مثلاً: مشتری تلگرام ۱۲" />
+      </label>
+
+      <div class="row">
+        <label>
+          سقف ترافیک (GB) — ۰ یعنی نامحدود
+          <input type="number" id="fTraffic" min="0" step="0.5" value="0" />
+        </label>
+        <label>
+          انقضا (روز از الان) — ۰ یعنی هرگز
+          <input type="number" id="fExpireDays" min="0" step="1" value="0" />
+        </label>
+      </div>
+
+      <label>
+        Flow (اختیاری، برای XTLS)
+        <input type="text" id="fFlow" placeholder="xtls-rprx-vision" />
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="cancelModal">انصراف</button>
+        <button type="submit" class="btn btn-primary" id="submitModal">ذخیره</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Config / QR modal -->
+  <dialog id="configModal">
+    <h2>اطلاعات اتصال</h2>
+    <img id="qrImage" alt="QR Code" />
+    <textarea id="linkText" readonly rows="3"></textarea>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" id="copyLink">کپی لینک</button>
+      <button type="button" class="btn btn-primary" id="closeConfigModal">بستن</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

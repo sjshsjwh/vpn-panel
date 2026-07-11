@@ -1,0 +1,23 @@
+{
+  "name": "xray-vpn-panel",
+  "version": "1.0.0",
+  "description": "Self-hosted VLESS/VMess (Xray-core) management panel with REST API, built for single-port PaaS deployment (Railway).",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-proxy": "^1.18.1",
+    "morgan": "^1.10.0",
+    "qrcode": "^1.5.4",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
