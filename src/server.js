@@ -38,9 +38,12 @@ wsProxy.on('error', (err, req, socket) => {
 });
 
 server.on('upgrade', (req, socket, head) => {
+  console.log(`[ws] upgrade request: ${req.url}`);
   if (req.url && req.url.startsWith(config.vlessWsPath)) {
+    console.log('[ws] path matched, proxying to xray');
     wsProxy.ws(req, socket, head);
   } else {
+    console.log('[ws] path did NOT match, dropping connection');
     socket.destroy();
   }
 });
